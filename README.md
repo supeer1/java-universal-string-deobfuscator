@@ -6,6 +6,8 @@
 
 `java -jar deobf.jar input.jar type`
 
+---
+
 ### Transformer Types
 
 | Type | Description |
