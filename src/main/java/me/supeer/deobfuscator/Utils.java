@@ -27,14 +27,6 @@ public class Utils {
         return classWriter.toByteArray();
     }
 
-
-    public static String[] getParameters(String editedDesc){
-        String params = editedDesc.substring(1, editedDesc.lastIndexOf(")"));
-        System.out.println(params);
-        return params.split("");
-    }
-
-
     public static ClassNode findClass(Content content, String name){
         return content.classes.values().stream().filter(a -> a.name.equals(name)).findFirst().orElse(null);
     }
