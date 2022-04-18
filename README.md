@@ -4,10 +4,14 @@
 
 ### Usage
 
-java -jar deobf.jar input.jar type
+`java -jar deobf.jar input.jar type`
 
 ### Transformer Types
 
 | Type | Description |
 | --- | --- |
-| 1 | `qwe` |
+| 1 | `needs Decrypt ClassName, MethodName, MethodDesc` |
+
+
+### Libraries
+- ObjectWeb ASM
