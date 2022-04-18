@@ -43,23 +43,7 @@ public class Clazz {
 
         return null;
     }
-
-    /*
-        Lookup maybe? xd
-     */
-    public Object get(String fieldName, Object reference) {
-        try {
-            Field field = clazz.getDeclaredField(fieldName);
-            if (!field.isAccessible())
-                field.trySetAccessible();
-
-            return field.get(reference);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
+    
 
     public Class<?> getClazz() {
         return clazz;
