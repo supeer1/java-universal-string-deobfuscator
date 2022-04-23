@@ -67,7 +67,7 @@ public class Content {
                         content.classes.put(jarEntry.getName(), classNode);
                     }
                     catch (Throwable ex){
-                        ex.printStackTrace();
+                        content.assets.put(jarEntry.getName(), new JarContentFile(inputStream, jarEntry));
                     }
                     continue;
                 }
