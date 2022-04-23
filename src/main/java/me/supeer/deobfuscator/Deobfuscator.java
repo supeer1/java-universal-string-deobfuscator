@@ -13,6 +13,7 @@ import me.supeer.deobfuscator.transformer.AbstractTransformer;
 import me.supeer.deobfuscator.transformer.Type1Transformer;
 import me.supeer.deobfuscator.transformer.Type2Transformer;
 import me.supeer.deobfuscator.transformer.Type3Transformer;
+import org.objectweb.asm.tree.ClassNode;
 
 public class Deobfuscator {
 

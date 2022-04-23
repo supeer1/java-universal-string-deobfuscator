@@ -60,10 +60,15 @@ public class Content {
                 JarEntry jarEntry = entries.nextElement();
                 InputStream inputStream = jarFile.getInputStream(jarEntry);
                 if(jarEntry.getName().endsWith(".class")){
-                    ClassReader classReader = new ClassReader(inputStream);
-                    ClassNode classNode = new ClassNode();
-                    classReader.accept(classNode, 0);
-                    content.classes.put(jarEntry.getName(), classNode);
+                    try{
+                        ClassReader classReader = new ClassReader(inputStream);
+                        ClassNode classNode = new ClassNode();
+                        classReader.accept(classNode, 0);
+                        content.classes.put(jarEntry.getName(), classNode);
+                    }
+                    catch (Throwable ex){
+                        ex.printStackTrace();
+                    }
                     continue;
                 }
                 content.assets.put(jarEntry.getName(), new JarContentFile(inputStream, jarEntry));
