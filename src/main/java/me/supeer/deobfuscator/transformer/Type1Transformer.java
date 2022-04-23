@@ -42,6 +42,10 @@ public class Type1Transformer extends AbstractTransformer{
 
         Clazz clazz = ClassLoader.getInstance().buildClass(decryptClass);
 
+        if(clazz == null){
+            throw new RuntimeException("decrypt method couldn't be loaded");
+        }
+
         for(ClassNode classNode : content.classes.values()){
             for(MethodNode methodNode : classNode.methods){
                 for(AbstractInsnNode insnNode : methodNode.instructions){
