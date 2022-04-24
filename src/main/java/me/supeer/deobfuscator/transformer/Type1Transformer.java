@@ -16,6 +16,8 @@ import me.supeer.deobfuscator.loader.ClassLoader;
 import me.supeer.deobfuscator.loader.Clazz;
 import org.objectweb.asm.tree.*;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Type1Transformer extends AbstractTransformer{
 
     private String className;
@@ -45,6 +47,7 @@ public class Type1Transformer extends AbstractTransformer{
         if(clazz == null){
             throw new RuntimeException("decrypt method couldn't be loaded");
         }
+        AtomicInteger count = new AtomicInteger();
 
         for(ClassNode classNode : content.classes.values()){
             for(MethodNode methodNode : classNode.methods){
@@ -61,6 +64,7 @@ public class Type1Transformer extends AbstractTransformer{
                                 methodNode.instructions.remove(insnNode.getPrevious());
                                 //
                                 methodNode.instructions.set(insnNode, new LdcInsnNode(decrypted));
+                                count.getAndIncrement();
                             }
                             catch (Throwable ex){
                                 ex.printStackTrace();
@@ -70,5 +74,6 @@ public class Type1Transformer extends AbstractTransformer{
                 }
             }
         }
+        System.out.println(count.get() + " strings are decrypted");
     }
 }

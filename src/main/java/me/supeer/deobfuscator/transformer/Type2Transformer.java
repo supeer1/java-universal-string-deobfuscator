@@ -15,6 +15,8 @@ import me.supeer.deobfuscator.loader.ClassLoader;
 import me.supeer.deobfuscator.loader.Clazz;
 import org.objectweb.asm.tree.*;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Type2Transformer extends AbstractTransformer{
 
     private String methodName;
@@ -41,7 +43,7 @@ public class Type2Transformer extends AbstractTransformer{
                 Main.log(classNode.name + " was skipped due to couldn't parse Class");
                 continue;
             }
-
+            AtomicInteger count = new AtomicInteger();
             for(MethodNode methodNode : classNode.methods){
                 for(AbstractInsnNode insnNode : methodNode.instructions){
                     if(insnNode instanceof MethodInsnNode methodInsnNode){
@@ -57,6 +59,7 @@ public class Type2Transformer extends AbstractTransformer{
                                 methodNode.instructions.remove(insnNode.getPrevious());
                                 //
                                 methodNode.instructions.set(insnNode, new LdcInsnNode(decrypted));
+                                count.getAndIncrement();
                             }
                             catch (Throwable ex){
                                 ex.printStackTrace();
@@ -65,7 +68,7 @@ public class Type2Transformer extends AbstractTransformer{
                     }
                 }
             }
-
+            System.out.println(count.get() + " strings are decrypted");
         }
     }
 }
