@@ -16,7 +16,7 @@
 | 2 | `needs Decrypt MethodName, MethodDesc` |
 | 3 | `needs Decrypt MethodDesc, MethodAccess` |
 ---
-if you do not know how to get them you can use [Recaf](https://github.com/Col-E/Recaf).
+
 
 
 ### Libraries
