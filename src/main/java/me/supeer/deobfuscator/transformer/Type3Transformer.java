@@ -54,14 +54,19 @@ public class Type3Transformer extends AbstractTransformer{
                                 continue;
                             }
                             if(target.access == methodAccess){
-                                //you can add new parameters
-                                String param1 = (String) ((LdcInsnNode)insnNode.getPrevious()).cst;
-                                String decrypted = (String) clazz.invoke(target.name, methodDesc, null, param1);
-                                Main.log("decrypted string -- " + decrypted);
-                                //removing parameters
-                                methodNode.instructions.remove(insnNode.getPrevious());
-                                //
-                                methodNode.instructions.set(insnNode, new LdcInsnNode(decrypted));
+                                try{
+                                    //you can add new parameters
+                                    String param1 = (String) ((LdcInsnNode)insnNode.getPrevious()).cst;
+                                    String decrypted = (String) clazz.invoke(target.name, methodDesc, null, param1);
+                                    Main.log("decrypted string -- " + decrypted);
+                                    //removing parameters
+                                    methodNode.instructions.remove(insnNode.getPrevious());
+                                    //
+                                    methodNode.instructions.set(insnNode, new LdcInsnNode(decrypted));
+                                }
+                                catch (Throwable throwable){
+                                    throwable.printStackTrace();
+                                }
                             }
                         }
                     }

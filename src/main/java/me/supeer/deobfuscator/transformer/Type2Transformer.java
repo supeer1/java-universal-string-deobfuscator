@@ -58,7 +58,8 @@ public class Type2Transformer extends AbstractTransformer{
                                 //
                                 methodNode.instructions.set(insnNode, new LdcInsnNode(decrypted));
                             }
-                            catch (Exception ex){
+                            catch (Throwable ex){
+                                ex.printStackTrace();
                             }
                         }
                     }
